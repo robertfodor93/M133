@@ -4,13 +4,12 @@ export default class ToDo extends EventTarget {
         this.title = title
         this.isDone = isDone
 
-        // create ui element
         const TASK = document.createElement('div')
         TASK.classList.add('task')
         if (this.isDone) TASK.classList.add('completed')
         else TASK.classList.remove('completed')
+        TASK.setAttribute('completed', this.isDone)
 
-        // create checkbox
         const TASK_CHECK = document.createElement('input')
         TASK_CHECK.setAttribute('type', 'checkbox')
         TASK_CHECK.checked = this.isDone
@@ -40,10 +39,8 @@ export default class ToDo extends EventTarget {
             this.element = null
         })
 
-        // append children
         TASK.append(TASK_CHECK, TASK_TITLE, TASK_DELETE_BTN)
 
-        // set task element
         this.element = TASK
     }
 }
